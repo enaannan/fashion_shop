@@ -8,38 +8,45 @@ class LoginScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
+            flex: 1,
             child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 61.0, horizontal: 25.0),
+              padding: const EdgeInsets.only(
+                  top: 61.0, bottom: 61.0, left: 25.0, right: 25.0),
               child: Image(
                 image: AssetImage('images/Kizita Logo.png'),
               ),
             ),
           ),
-          InputTextField(
-            textHint: 'email',
-            textObscure: false,
-          ),
-          SizedBox(height: 30.0),
-          InputTextField(
-            textHint: 'password',
-            textObscure: true,
-          ),
-          Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 50.0, horizontal: 90.0),
-              child: Container(
-                height: 55,
-                child: OutlineButton(
-                  child: Text('Login', style: TextStyle(fontSize: 20.0)),
-                  onPressed: () {
-                    Navigator.pushNamed(context, 'productsSreen');
-                  },
-                  borderSide: BorderSide(color: Colors.white, width: 2.0),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0)),
-                ),
-              )
+          Expanded(
+              flex: 1,
+              child: Column(
+                children: <Widget>[
+                  InputTextField(
+                    textHint: 'email',
+                    textObscure: false,
+                  ),
+                  SizedBox(height: 30.0),
+                  InputTextField(
+                    textHint: 'password',
+                    textObscure: true,
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 50.0, horizontal: 90.0),
+                      child: Container(
+                        height: 55,
+                        child: OutlineButton(
+                          child:
+                              Text('Login', style: TextStyle(fontSize: 20.0)),
+                          onPressed: () {
+                            Navigator.pushNamed(context, 'productsSreen');
+                          },
+                          borderSide:
+                              BorderSide(color: Colors.white, width: 2.0),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0)),
+                        ),
+                      )
 //            Material(
 //              color: Colors.pink,
 //              borderRadius: BorderRadius.all(Radius.circular(15.0)),
@@ -51,7 +58,9 @@ class LoginScreen extends StatelessWidget {
 //                ),
 //              ),
 //            ),
-              )
+                      )
+                ],
+              ))
         ],
       ),
     );

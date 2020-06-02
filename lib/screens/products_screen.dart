@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fashion_shop/constants/constants.dart';
 import 'package:fashion_shop/components/ButtonCategory.dart';
+import 'package:fashion_shop/components/PriceCard.dart';
+import 'package:fashion_shop/components/QuantityCounterButton.dart';
+import 'package:fashion_shop/components/BottomMenuButton.dart';
 
 class ProductsScreen extends StatelessWidget {
   @override
@@ -8,6 +11,7 @@ class ProductsScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 20.0),
@@ -51,14 +55,47 @@ class ProductsScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Card(
-              semanticContainer: true,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: Image(
-                image: AssetImage('images/bag.jpeg'),
-                fit: BoxFit.fill,
+            Expanded(
+              flex: 5,
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: Stack(
+                      children: <Widget>[
+                        Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: Card(
+                            semanticContainer: true,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            child: Image(
+                              image: AssetImage('images/bag.jpeg'),
+                              fit: BoxFit.fill,
+                            ),
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(30.0))),
+                          ),
+                        ),
+                        Positioned(
+                          left: 40.0,
+                          top: 30.0,
+                          child: PriceCard(
+                            price: '\$ 20',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Text(
+                    'Tink Crochet Blouse',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                  QuantityCounterButton()
+                ],
               ),
-            )
+            ),
+            Expanded(flex: 1, child: BottomMenuButton())
           ],
         ),
       ),
