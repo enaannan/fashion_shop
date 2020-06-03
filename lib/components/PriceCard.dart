@@ -8,9 +8,13 @@ class PriceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
 //                      alignment: Alignment(10, 10),
-      width: 50.0,
-      height: 25.0,
-      child: Center(child: Text(price)),
+      width: 80.0,
+      height: 40.0,
+      child: Center(
+          child: Text(
+        price,
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      )),
 
       decoration: BoxDecoration(
           color: Color(0xFF424242),

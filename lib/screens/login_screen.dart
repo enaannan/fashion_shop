@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fashion_shop/screens/products_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -39,26 +40,17 @@ class LoginScreen extends StatelessWidget {
                           child:
                               Text('Login', style: TextStyle(fontSize: 20.0)),
                           onPressed: () {
-                            Navigator.pushNamed(context, 'productsSreen');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProductsScreen()));
                           },
                           borderSide:
                               BorderSide(color: Colors.white, width: 2.0),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0)),
                         ),
-                      )
-//            Material(
-//              color: Colors.pink,
-//              borderRadius: BorderRadius.all(Radius.circular(15.0)),
-//              child: MaterialButton(
-//                onPressed: null,
-//                child: Text(
-//                  'Login',
-//                  style: TextStyle(fontSize: 20.0),
-//                ),
-//              ),
-//            ),
-                      )
+                      ))
                 ],
               ))
         ],

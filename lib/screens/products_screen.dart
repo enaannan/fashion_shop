@@ -4,8 +4,16 @@ import 'package:fashion_shop/components/ButtonCategory.dart';
 import 'package:fashion_shop/components/PriceCard.dart';
 import 'package:fashion_shop/components/QuantityCounterButton.dart';
 import 'package:fashion_shop/components/BottomMenuButton.dart';
+import 'package:fashion_shop/screens/product_view.dart';
 
-class ProductsScreen extends StatelessWidget {
+class ProductsScreen extends StatefulWidget {
+  @override
+  _ProductsScreenState createState() => _ProductsScreenState();
+}
+
+class _ProductsScreenState extends State<ProductsScreen> {
+  AssetImage productImage = AssetImage('images/bag.jpeg');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,19 +70,30 @@ class ProductsScreen extends StatelessWidget {
                   Expanded(
                     child: Stack(
                       children: <Widget>[
-                        Container(
-                          width: double.infinity,
-                          height: double.infinity,
-                          child: Card(
-                            semanticContainer: true,
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            child: Image(
-                              image: AssetImage('images/bag.jpeg'),
-                              fit: BoxFit.fill,
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    ProductView(productImage: productImage),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            height: double.infinity,
+                            child: Card(
+                              semanticContainer: true,
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              child: Image(
+                                image: productImage,
+                                fit: BoxFit.fill,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(30.0))),
                             ),
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(30.0))),
                           ),
                         ),
                         Positioned(
