@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fashion_shop/screens/cart_screen.dart';
 
 class BottomMenuButton extends StatefulWidget {
   @override
@@ -6,7 +7,6 @@ class BottomMenuButton extends StatefulWidget {
 }
 
 class _BottomMenuButtonState extends State<BottomMenuButton> {
-  int counter = 0;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,7 +32,9 @@ class _BottomMenuButtonState extends State<BottomMenuButton> {
           children: <Widget>[
             Expanded(
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  // Do something the the home icon is pressed
+                },
                 child: Container(
                   child: Icon(Icons.home),
                   decoration: BoxDecoration(
@@ -45,19 +47,23 @@ class _BottomMenuButtonState extends State<BottomMenuButton> {
               ),
             ),
             Expanded(
-              child: Container(
-                child: Icon(Icons.shopping_cart),
-                decoration: BoxDecoration(
-                  color: Color(0xFF424242),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CartScreen()));
+                },
+                child: Container(
+                  child: Icon(Icons.shopping_cart),
+                  decoration: BoxDecoration(
+                    color: Color(0xFF424242),
+                  ),
                 ),
               ),
             ),
             Expanded(
               child: InkWell(
                   onTap: () {
-                    setState(() {
-                      counter++;
-                    });
+                    //do something when settings icon is pressed
                   },
                   child: Container(
                     child: Icon(Icons.settings),

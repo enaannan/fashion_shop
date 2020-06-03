@@ -5,6 +5,7 @@ import 'package:fashion_shop/components/PriceCard.dart';
 import 'package:fashion_shop/components/QuantityCounterButton.dart';
 import 'package:fashion_shop/components/BottomMenuButton.dart';
 import 'package:fashion_shop/screens/product_view.dart';
+import 'package:fashion_shop/screens/cart_screen.dart';
 
 class ProductsScreen extends StatefulWidget {
   @override
@@ -44,9 +45,17 @@ class _ProductsScreenState extends State<ProductsScreen> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(right: 25.0),
-                    child: Icon(
-                      Icons.shopping_cart,
-                      size: 40.0,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CartScreen()));
+                      },
+                      child: Icon(
+                        Icons.shopping_cart,
+                        size: 40.0,
+                      ),
                     ),
                   ),
                 ],

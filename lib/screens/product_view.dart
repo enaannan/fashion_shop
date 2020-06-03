@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fashion_shop/components/PriceCard.dart';
 import 'package:fashion_shop/components/OtherProductsImageCard.dart';
+import 'package:fashion_shop/components/BottomMenuButton.dart';
 
 class ProductView extends StatelessWidget {
   final AssetImage productImage;
@@ -12,23 +13,29 @@ class ProductView extends StatelessWidget {
         body: Column(
           children: <Widget>[
             Expanded(
+                flex: 2,
                 child: Padding(
-              padding:
-                  const EdgeInsets.only(left: 30.0, right: 30.0, top: 10.0),
-              child: Container(
-                height: double.infinity,
-                width: double.infinity,
+                  padding:
+                      const EdgeInsets.only(left: 30.0, right: 30.0, top: 10.0),
+                  child: Container(
+                    height: double.infinity,
+                    width: double.infinity,
 //              child: Image(image: productImage),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(25.0),
-                        topLeft: Radius.circular(25.0)),
-                    image: DecorationImage(
-                        image: productImage, fit: BoxFit.cover)),
-              ),
-            )),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(25.0),
+                            topLeft: Radius.circular(25.0)),
+                        image: DecorationImage(
+                            image: productImage, fit: BoxFit.cover)),
+                  ),
+                )),
             Expanded(
+              flex: 3,
               child: Container(
+                decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.only(topRight: Radius.circular(30.0)),
+                ),
                 child: Column(
                   children: <Widget>[
                     Padding(
@@ -97,15 +104,14 @@ class ProductView extends StatelessWidget {
                           OtherProductsImageCard(
                             productImage: AssetImage('images/fashion3.jpg'),
                           ),
-//                  ImageCard(
-//                    productImage: AssetImage('/images/fashionshop1.png'),
-//                  )
                         ],
                       ),
-                    )
+                    ),
+                    Expanded(
+                      child: BottomMenuButton(),
+                    ),
                   ],
                 ),
-                decoration: BoxDecoration(),
               ),
             )
           ],
