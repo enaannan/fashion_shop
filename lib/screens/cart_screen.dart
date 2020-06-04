@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fashion_shop/components/BottomMenuButton.dart';
 import 'package:fashion_shop/components/OtherProductsImageCard.dart';
 import 'package:fashion_shop/components/QuantityCounterButton.dart';
+import 'package:fashion_shop/constants/constants.dart';
 
 class CartScreen extends StatelessWidget {
   @override
@@ -43,15 +44,30 @@ class CartScreen extends StatelessWidget {
                               BorderRadius.all(Radius.circular(25.0))),
                       child: Column(
                         children: <Widget>[
-                          Column(
-                            children: <Widget>[
-                              CheckoutSummary(
-                                summaryTitle: 'Total items',
-                                summaryValue: '\$40',
-                              ),
-                            ],
+                          CheckoutSummary(
+                            summaryTitle: 'Total items',
+                            summaryValue: '\$40',
                           ),
                           Divider(),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 15.0, vertical: 4.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  'Total',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ),
+                                Text(
+                                  '\$0',
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                              ],
+                            ),
+                          )
                         ],
                       ),
                     ),
@@ -93,24 +109,56 @@ class CartScreen extends StatelessWidget {
   }
 }
 
-//Todo: fix this widget to display the 'items     $40'
 class CheckoutSummary extends StatelessWidget {
   final String summaryTitle;
   final String summaryValue;
-  CheckoutSummary({@required this.summaryTitle, @required this.summaryValue});
+  final String discountValue;
+  CheckoutSummary(
+      {@required this.summaryTitle,
+      @required this.summaryValue,
+      this.discountValue = '\$ 0'});
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Row(
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Column(
         children: <Widget>[
-          Text(
-            summaryTitle,
-            style: TextStyle(color: Color(0xFF918F8F)),
+          Container(
+            height: 30.0,
+            width: double.infinity,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  summaryTitle,
+                  style: TextStyle(color: Color(0xFF918F8F)),
+                ),
+                Text(
+                  summaryValue,
+                  style: TextStyle(
+                    color: Color(0xFF918F8F),
+                  ),
+                ),
+              ],
+            ),
           ),
-          Text(
-            summaryValue,
-            style: TextStyle(
-              color: Color(0xFF918F8F),
+          Container(
+            height: 30.0,
+            width: double.infinity,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  kDiscountTitle,
+                  style: TextStyle(color: Color(0xFF918F8F)),
+                ),
+                Text(
+                  discountValue,
+                  style: TextStyle(
+                    color: Color(0xFF918F8F),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
