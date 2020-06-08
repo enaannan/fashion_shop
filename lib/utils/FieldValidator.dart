@@ -2,6 +2,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 
 class FieldValidator {
+  //returns a boolean of true if Registration fields  pass the test
   static List<bool> validateRegistrationForm(
       {String email, String password, String retypedPassword}) {
     var validationResponse = [
@@ -11,8 +12,17 @@ class FieldValidator {
     return validationResponse;
   }
 
+//returns a boolean of true if Login fields pass the test
+  static List<bool> validateLoginForm(String email, String password) {
+    var validationResponse = [
+      validateEmail(email),
+      validateLoginPassword(password),
+    ];
+    return validationResponse;
+  }
+
   static bool validateEmail(String value) {
-    if (value == null) {
+    if (value == null || value.isEmpty) {
       Fluttertoast.showToast(
           msg: 'Enter email',
           gravity: ToastGravity.CENTER,
@@ -33,7 +43,25 @@ class FieldValidator {
           textColor: Colors.white);
       return false;
     }
-    return null;
+    return true;
+  }
+
+  static bool validateLoginPassword(String password) {
+    if (password == null) {
+      Fluttertoast.showToast(
+          msg: 'Enter a password',
+          gravity: ToastGravity.CENTER,
+          backgroundColor: Colors.red,
+          textColor: Colors.white);
+      return false;
+    } else if (password.length < 7) {
+      Fluttertoast.showToast(
+          msg: 'Password must be more than 7 characters',
+          gravity: ToastGravity.CENTER,
+          backgroundColor: Colors.red,
+          textColor: Colors.white);
+    } else
+      return true;
   }
 
   static bool validatePassword(String password, String retypedPassword) {
@@ -61,7 +89,7 @@ class FieldValidator {
           gravity: ToastGravity.CENTER,
           backgroundColor: Colors.red,
           textColor: Colors.white);
-      return true;
+      return false;
     }
   }
 }
