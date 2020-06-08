@@ -1,6 +1,6 @@
 # fashion_shop
 
-A new Flutter application.
+An online shop for KIZITA TABICCA. It allows users to browse through it catelogue and purchase items. 
 
 ## Getting Started
 
