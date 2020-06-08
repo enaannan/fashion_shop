@@ -17,7 +17,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String email;
   String password;
   String retypedPassword;
-  List result = [];
+  List<String> result = [];
   bool showSpinner = false;
 
   final auth = FirebaseAuth.instance;
@@ -80,11 +80,34 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       retypedPassword: retypedPassword);
 
                   //if both password and email are valid
-                  if (result[0] == true && result[1] == true) {
+                  if (result[0] == 'Success' && result[1] == 'Success') {
                     setState(() {
                       showSpinner = true;
-                      registerUser();
                     });
+                    registerUser();
+                    Fluttertoast.showToast(
+                        msg: result[0],
+                        gravity: ToastGravity.CENTER,
+                        backgroundColor: Colors.green,
+                        textColor: Colors.white);
+                  } else if (result[0] != 'Success' && result[1] == 'Success') {
+                    Fluttertoast.showToast(
+                        msg: result[0],
+                        gravity: ToastGravity.CENTER,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white);
+                  } else if (result[1] != 'Success' && result[0] == 'Success') {
+                    Fluttertoast.showToast(
+                        msg: result[1],
+                        gravity: ToastGravity.CENTER,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white);
+                  } else {
+                    Fluttertoast.showToast(
+                        msg: result[0],
+                        gravity: ToastGravity.CENTER,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white);
                   }
                 },
               ),

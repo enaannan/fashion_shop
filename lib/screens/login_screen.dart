@@ -16,7 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final auth = FirebaseAuth.instance;
   String email;
   String password;
-  List<bool> loginValidationResponse;
+  List<String> loginValidationResponse;
   bool showSpinner = false;
   @override
   Widget build(BuildContext context) {
@@ -61,9 +61,29 @@ class _LoginScreenState extends State<LoginScreen> {
                     onTap: () {
                       loginValidationResponse =
                           FieldValidator.validateLoginForm(email, password);
-                      if (loginValidationResponse[0] == true &&
-                          loginValidationResponse[1] == true) {
+                      if (loginValidationResponse[0] == 'Success' &&
+                          loginValidationResponse[1] == 'Success') {
                         loginUser();
+                      } else if (loginValidationResponse[0] != 'Success' &&
+                          loginValidationResponse[1] == 'Success') {
+                        Fluttertoast.showToast(
+                            msg: loginValidationResponse[0],
+                            gravity: ToastGravity.CENTER,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white);
+                      } else if (loginValidationResponse[1] != 'Success' &&
+                          loginValidationResponse[0] == 'Success') {
+                        Fluttertoast.showToast(
+                            msg: loginValidationResponse[1],
+                            gravity: ToastGravity.CENTER,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white);
+                      } else {
+                        Fluttertoast.showToast(
+                            msg: loginValidationResponse[1],
+                            gravity: ToastGravity.CENTER,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white);
                       }
                     },
                   ),
