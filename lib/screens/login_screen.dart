@@ -14,8 +14,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final auth = FirebaseAuth.instance;
-  String email;
-  String password;
+  String email = 'nii@gmail.com'; //todo: remove default sign in address
+  String password = '123456789';
   List<String> loginValidationResponse;
   bool showSpinner = false;
   @override
@@ -106,6 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (user != null) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => ProductsScreen()));
+        print(user);
         Fluttertoast.showToast(
             msg: 'login Success',
             textColor: Colors.white,

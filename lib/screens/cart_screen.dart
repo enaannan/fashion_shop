@@ -1,30 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:fashion_shop/components/BottomMenuButton.dart';
-import 'package:fashion_shop/components/OtherProductsImageCard.dart';
-import 'package:fashion_shop/components/QuantityCounterButton.dart';
 import 'package:fashion_shop/constants/constants.dart';
+import 'package:provider/provider.dart';
+import 'package:fashion_shop/Models/chrochet_data.dart';
+import 'package:fashion_shop/components/cart_list_widget.dart';
+import 'package:fashion_shop/Models/cartData.dart';
 
 class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+//    return Scaffold(body: SafeArea(child: CartListWidget()));
     return SafeArea(
       child: Scaffold(
         body: Column(
           children: <Widget>[
-            Expanded(
-                flex: 1,
-                child: Column(
-                  children: <Widget>[
-                    CartTile(
-                      productImage: AssetImage('images/fashion2.jpg'),
-                      productName: 'Tink Chrochet Blouse',
-                    ),
-                    CartTile(
-                      productImage: AssetImage('images/fashion3.jpg'),
-                      productName: ' Nice clothes',
-                    ),
-                  ],
-                )),
+            Expanded(child: CartListWidget()),
             Divider(
               color: Color(0xFF666565),
             ),
@@ -161,48 +151,6 @@ class CheckoutSummary extends StatelessWidget {
               ],
             ),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class CartTile extends StatelessWidget {
-  final AssetImage productImage;
-  final String productName;
-  CartTile({@required this.productImage, @required this.productName});
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Container(
-                width: double.infinity,
-                height: double.infinity,
-                child: OtherProductsImageCard(
-                  productImage: productImage,
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-              child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Text(
-                productName,
-                style: TextStyle(color: Color(0xFF918F8F), fontSize: 20.0),
-              ),
-              Text(
-                '\$20',
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-              ),
-              QuantityCounterButton(),
-            ],
-          ))
         ],
       ),
     );

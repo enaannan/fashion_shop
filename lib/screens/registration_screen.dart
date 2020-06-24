@@ -81,15 +81,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
                   //if both password and email are valid
                   if (result[0] == 'Success' && result[1] == 'Success') {
-                    setState(() {
-                      showSpinner = true;
-                    });
                     registerUser();
-                    Fluttertoast.showToast(
-                        msg: result[0],
-                        gravity: ToastGravity.CENTER,
-                        backgroundColor: Colors.green,
-                        textColor: Colors.white);
                   } else if (result[0] != 'Success' && result[1] == 'Success') {
                     Fluttertoast.showToast(
                         msg: result[0],
@@ -121,6 +113,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   //Todo : Figure out if you can write a unit test for this function
   void registerUser() async {
     try {
+      setState(() {
+        showSpinner = true;
+      });
+
       final newUser = await auth.createUserWithEmailAndPassword(
           email: email, password: password);
       if (newUser != null) {
@@ -132,11 +128,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             backgroundColor: Colors.green,
             gravity: ToastGravity.CENTER);
       }
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: 'Unable to register',
+          textColor: Colors.white,
+          backgroundColor: Colors.red,
+          gravity: ToastGravity.CENTER);
+
       setState(() {
         showSpinner = false;
       });
-    } catch (e) {
-      print(e);
     }
   }
 }

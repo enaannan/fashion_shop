@@ -4,7 +4,7 @@ import 'package:fashion_shop/components/OtherProductsImageCard.dart';
 import 'package:fashion_shop/components/BottomMenuButton.dart';
 
 class ProductView extends StatelessWidget {
-  final AssetImage productImage;
+  final String productImage;
   ProductView({@required this.productImage});
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,8 @@ class ProductView extends StatelessWidget {
                             topRight: Radius.circular(25.0),
                             topLeft: Radius.circular(25.0)),
                         image: DecorationImage(
-                            image: productImage, fit: BoxFit.cover)),
+                            image: AssetImage(productImage),
+                            fit: BoxFit.cover)),
                   ),
                 )),
             Expanded(

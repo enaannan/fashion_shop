@@ -1,13 +1,10 @@
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:flutter/material.dart';
-
 class FieldValidator {
   //returns  a string to be used in inflating  toast on Registration Screen
   static List<String> validateRegistrationForm(
       {String email, String password, String retypedPassword}) {
     var validationResponse = [
       validateEmail(email),
-      validatePassword(password, retypedPassword)
+      validateRegistrationPassword(password, retypedPassword)
     ];
     return validationResponse;
   }
@@ -47,7 +44,8 @@ class FieldValidator {
   }
 
   //Validates registration form passwords
-  static String validatePassword(String password, String retypedPassword) {
+  static String validateRegistrationPassword(
+      String password, String retypedPassword) {
     if (password == retypedPassword) {
       if (password == null) {
         return 'Enter a Password';
@@ -57,11 +55,6 @@ class FieldValidator {
       }
       return 'Success';
     } else {
-      Fluttertoast.showToast(
-          msg: 'Passwords do not match',
-          gravity: ToastGravity.CENTER,
-          backgroundColor: Colors.red,
-          textColor: Colors.white);
       return 'Passwords do not match';
     }
   }

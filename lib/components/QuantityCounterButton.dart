@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
 class QuantityCounterButton extends StatefulWidget {
+  int quantity;
+  QuantityCounterButton({this.quantity = 0});
+
   @override
   _QuantityCounterButtonState createState() => _QuantityCounterButtonState();
 }
 
 class _QuantityCounterButtonState extends State<QuantityCounterButton> {
-  int counter = 0;
+//  int counter = q;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,9 +19,11 @@ class _QuantityCounterButtonState extends State<QuantityCounterButton> {
         children: <Widget>[
           InkWell(
             onTap: () {
-              setState(() {
-                counter--;
-              });
+              if (widget.quantity > 0) {
+                setState(() {
+                  widget.quantity--;
+                });
+              }
             },
             child: Container(
               height: 30.0,
@@ -42,13 +47,13 @@ class _QuantityCounterButtonState extends State<QuantityCounterButton> {
           Container(
             height: 30.0,
             width: 30.0,
-            child: Center(child: Text(counter.toString())),
+            child: Center(child: Text(widget.quantity.toString())),
             decoration: BoxDecoration(color: Color(0xFF424242)),
           ),
           InkWell(
               onTap: () {
                 setState(() {
-                  counter++;
+                  widget.quantity++;
                 });
               },
               child: Container(
