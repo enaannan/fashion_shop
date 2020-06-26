@@ -4,7 +4,11 @@ import 'package:fashion_shop/components/QuantityCounterButton.dart';
 class CartTile extends StatelessWidget {
   final String productImage;
   final String productName;
-  CartTile({@required this.productImage, @required this.productName});
+  final double productPrice;
+  CartTile(
+      {@required this.productImage,
+      @required this.productName,
+      @required this.productPrice});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -40,7 +44,7 @@ class CartTile extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 20.0, vertical: 20.0),
-                child: Text('\$0',
+                child: Text('\$ ${productPrice.toString()}',
                     style:
                         TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
               ),

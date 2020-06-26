@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:fashion_shop/Models/chrochet_data.dart';
 
 class QuantityCounterButton extends StatefulWidget {
   int quantity;
@@ -9,7 +11,6 @@ class QuantityCounterButton extends StatefulWidget {
 }
 
 class _QuantityCounterButtonState extends State<QuantityCounterButton> {
-//  int counter = q;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,11 +20,8 @@ class _QuantityCounterButtonState extends State<QuantityCounterButton> {
         children: <Widget>[
           InkWell(
             onTap: () {
-              if (widget.quantity > 0) {
-                setState(() {
-                  widget.quantity--;
-                });
-              }
+              Provider.of<ChrochetData>(context, listen: false)
+                  .decreaseQuantity();
             },
             child: Container(
               height: 30.0,
@@ -47,14 +45,16 @@ class _QuantityCounterButtonState extends State<QuantityCounterButton> {
           Container(
             height: 30.0,
             width: 30.0,
-            child: Center(child: Text(widget.quantity.toString())),
+            child: Center(
+                child: Text(Provider.of<ChrochetData>(context)
+                    .getQuantity()
+                    .toString())),
             decoration: BoxDecoration(color: Color(0xFF424242)),
           ),
           InkWell(
               onTap: () {
-                setState(() {
-                  widget.quantity++;
-                });
+                Provider.of<ChrochetData>(context, listen: false)
+                    .increaseQuantity();
               },
               child: Container(
                 height: 30.0,

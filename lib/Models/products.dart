@@ -5,12 +5,4 @@ class Product {
   final double price; // Stores products price
 
   Product({this.price, this.name, this.imagePath, this.quantity});
-
-  void increaseQuantity() {
-    quantity++;
-  }
-
-  void decreaseQuantity() {
-    quantity--;
-  }
 }

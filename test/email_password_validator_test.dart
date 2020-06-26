@@ -10,7 +10,7 @@ void main() {
 
     test('Incorrect Email Format without @ and . Test', () {
       var result = FieldValidator.validateEmail('kobby');
-      expect(result, 'Enter Valid Email');
+      expect(result, 'Enter Valiid Email');
     });
 
     test('Incorrect Email Format with @ Test', () {

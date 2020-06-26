@@ -13,6 +13,7 @@ class CartListWidget extends StatelessWidget {
           return CartTile(
             productName: cartProduct.name,
             productImage: cartProduct.imagePath,
+            productPrice: cartProduct.price,
           );
         },
         itemCount: cartData.cartProductCount,

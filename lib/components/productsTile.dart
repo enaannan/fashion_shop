@@ -5,6 +5,7 @@ import 'package:fashion_shop/components/QuantityCounterButton.dart';
 import 'package:fashion_shop/Models/products.dart';
 import 'package:fashion_shop/Models/cartData.dart';
 import 'package:provider/provider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ProductTile extends StatelessWidget {
   final Product product;
@@ -72,10 +73,28 @@ class ProductTile extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 10.0),
                 child: InkWell(
                   onTap: () {
-                    Provider.of<CartData>(context, listen: false).addToCart(
-                        productImagePath: product.imagePath,
-                        productName: product.name,
-                        productQuantity: product.quantity);
+                    //checks if the item to be added is already in the cart
+                    if (Provider.of<CartData>(context, listen: false)
+                        .isNotInList(productName: product.name)) {
+                      Provider.of<CartData>(context, listen: false).addToCart(
+                          productImagePath: product.imagePath,
+                          productName: product.name,
+                          productQuantity: product.quantity,
+                          productPrice: product.price);
+
+                      Fluttertoast.showToast(
+                          msg: 'Item addad to cart',
+                          gravity: ToastGravity.CENTER,
+                          backgroundColor: Colors.green,
+                          textColor: Colors.white);
+                    } else {
+                      Fluttertoast.showToast(
+                          msg: 'Item is already in cart',
+                          gravity: ToastGravity.CENTER,
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white);
+                    }
+                    ;
                   },
                   child: Container(
                     height: 35.0,

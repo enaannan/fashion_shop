@@ -124,7 +124,7 @@ class CheckoutSummary extends StatelessWidget {
                   style: TextStyle(color: Color(0xFF918F8F)),
                 ),
                 Text(
-                  summaryValue,
+                  Provider.of<CartData>(context).totalPrice.toString(),
                   style: TextStyle(
                     color: Color(0xFF918F8F),
                   ),
