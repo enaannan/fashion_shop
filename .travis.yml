@@ -1,3 +1,2 @@
 language: dart
 os: windows
-dependency: flutter pub get
