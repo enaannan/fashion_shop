@@ -13,7 +13,8 @@ Sterp 2: Load project into Atom IDE and use shortcut 'CTRL + ALT + C' to run tes
 ## Getting Started
 
 # Prerequisites
-```Android Studio
+```Android Studio```
+```Atom IDE```
 
 This project is a starting point for a Flutter application.
 
