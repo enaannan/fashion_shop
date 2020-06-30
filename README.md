@@ -1,6 +1,6 @@
 # fashion_shop
 
-An online shop for KIZITA TABICCA. It allows users to browse through it catelogue and purchase items and checkout from a cart.
+An online shop for KIZITA TABICCA. It allows users to browse through the catelogue and purchase items and checkout from a cart.
 
 # Running Tests
 To run tests, type 'flutter test' in Android Studio terminal.
