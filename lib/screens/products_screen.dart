@@ -83,9 +83,9 @@ class _ProductsScreenState extends State<ProductsScreen> {
                 //chrochet tab
                 child: TabBarView(
                   children: <Widget>[
-                    ChrochetProductListWidget(),
-                    ChrochetProductListWidget(),
-                    ChrochetProductListWidget(),
+                    CrochetProductListWidget(),
+                    CrochetProductListWidget(),
+                    CrochetProductListWidget(),
 //                    ProductTile(productImage: productImage),
 //                    Column(
 //                      children: <Widget>[

@@ -4,47 +4,42 @@ import 'dart:collection';
 
 //todo: all products read from the same quantity variable. fix it
 class ChrochetData extends ChangeNotifier {
-  static int _quantity = 1;
-
-  List<Product> _chrochetProducts = [
+  List<Product> _crochetProducts = [
     Product(
         price: 20,
         name: 'Tink Crochet Blouse',
         imagePath: 'images/bag.jpeg',
-        quantity: _quantity),
+        quantity: 5),
     Product(
         price: 35,
         name: 'Cripple Top',
         imagePath: 'images/fashion2.jpg',
-        quantity: _quantity),
+        quantity: 5),
     Product(
         price: 50,
         name: 'shirt',
         imagePath: 'images/fashion3.jpg',
-        quantity: _quantity),
+        quantity: 5),
     Product(
         price: 20,
         name: 'Tink Crochet Blouse',
         imagePath: 'images/bag.jpeg',
-        quantity: _quantity),
+        quantity: 5),
     Product(
         price: 30,
         name: 'Cripple Top',
         imagePath: 'images/fashion2.jpg',
-        quantity: _quantity),
+        quantity: 5),
     Product(
-        price: 0,
-        name: 'shirt',
-        imagePath: 'images/fashion3.jpg',
-        quantity: _quantity),
+        price: 0, name: 'shirt', imagePath: 'images/fashion3.jpg', quantity: 5),
   ];
 
-  UnmodifiableListView<Product> get chrochetProducts {
-    return UnmodifiableListView(_chrochetProducts);
+  UnmodifiableListView<Product> get crochetProducts {
+    return UnmodifiableListView(_crochetProducts);
   }
 
   int get productCount {
-    return _chrochetProducts.length;
+    return _crochetProducts.length;
   }
 
   //adds a new product to the list
@@ -54,7 +49,7 @@ class ChrochetData extends ChangeNotifier {
         price: newChrochetPrice,
         name: newChrochetProductName,
         imagePath: newImagePath);
-    _chrochetProducts.add(product);
+    _crochetProducts.add(product);
     notifyListeners();
 
     //for unit test
@@ -68,19 +63,34 @@ class ChrochetData extends ChangeNotifier {
 
   //increase quantity
 
-  void increaseQuantity() {
-    _quantity++;
-    notifyListeners();
-  }
-
-  void decreaseQuantity() {
-    if (_quantity > 0) {
-      _quantity--;
+  void increaseQuantity(String name) {
+    for (var i = 0; i < crochetProducts.length; i++) {
+      if (name == crochetProducts[i].name) {
+        crochetProducts[i].quantity++;
+      }
     }
+
     notifyListeners();
   }
 
-  int getQuantity() {
-    return _quantity;
+  void decreaseQuantity(String name) {
+    for (var i = 0; i < crochetProducts.length; i++) {
+      if (name == crochetProducts[i].name) {
+        if (crochetProducts[i].quantity > 0) {
+          crochetProducts[i].quantity--;
+        }
+      }
+    }
+
+    notifyListeners();
+  }
+
+  int getQuantity(String name) {
+    for (var i = 0; i < crochetProducts.length; i++) {
+      if (name == crochetProducts[i].name) {
+        return crochetProducts[i].quantity;
+      }
+    }
+    return null;
   }
 }

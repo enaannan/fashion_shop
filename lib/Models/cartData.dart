@@ -36,6 +36,14 @@ class CartData extends ChangeNotifier {
       return 'fail';
   }
 
+  //remove item from cart
+  Product removeItem({int index}) {
+    var product = _cartList.removeAt(index);
+
+    notifyListeners();
+    return product;
+  }
+
   // check if product is already in cart
   bool isNotInList({String productName}) {
     for (var i = 0; i < cartList.length; i++) {

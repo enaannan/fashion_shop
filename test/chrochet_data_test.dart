@@ -23,7 +23,7 @@ void main() {
   });
 
   test("get total quantity", () {
-    int quantity = ChrochetData().getQuantity();
+    int quantity = ChrochetData().getQuantity('Tink Crochet Blouse');
     bool actual = false;
     if (quantity > 0) {
       actual = true;
@@ -32,7 +32,7 @@ void main() {
   });
 
   test("Testing to show chrochet list is not empty", () {
-    UnmodifiableListView<Product> result = ChrochetData().chrochetProducts;
+    UnmodifiableListView<Product> result = ChrochetData().crochetProducts;
 
     bool actual = false;
     if (result != null) {

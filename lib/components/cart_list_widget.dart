@@ -3,17 +3,42 @@ import 'package:provider/provider.dart';
 import 'package:fashion_shop/components/CartTile.dart';
 import 'package:fashion_shop/Models/cartData.dart';
 
-class CartListWidget extends StatelessWidget {
+class CartListWidget extends StatefulWidget {
+  @override
+  _CartListWidgetState createState() => _CartListWidgetState();
+}
+
+class _CartListWidgetState extends State<CartListWidget> {
   @override
   Widget build(BuildContext context) {
     return Consumer<CartData>(builder: (context, cartData, child) {
       return ListView.builder(
         itemBuilder: (context, index) {
           final cartProduct = cartData.cartList[index];
-          return CartTile(
-            productName: cartProduct.name,
-            productImage: cartProduct.imagePath,
-            productPrice: cartProduct.price,
+
+          return Dismissible(
+            key: Key(cartData.cartList[index].name),
+            onDismissed: (direction) {
+              var removedProduct = cartData.removeItem(index: index);
+
+              Scaffold.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: Colors.green,
+                  content: Text(
+                    '${removedProduct.name} is removed',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              );
+            },
+            background: Container(
+              color: Colors.red,
+            ),
+            child: CartTile(
+              productName: cartProduct.name,
+              productImage: cartProduct.imagePath,
+              productPrice: cartProduct.price,
+            ),
           );
         },
         itemCount: cartData.cartProductCount,
@@ -21,18 +46,3 @@ class CartListWidget extends StatelessWidget {
     });
   }
 }
-
-//Expanded(
-//flex: 1,
-//child: Column(
-//children: <Widget>[
-//CartTile(
-//productImage: AssetImage('images/fashion2.jpg'),
-//productName: 'Tink Chrochet Blouse',
-//),
-//CartTile(
-//productImage: AssetImage('images/fashion3.jpg'),
-//productName: ' Nice clothes',
-//),
-//],
-//));

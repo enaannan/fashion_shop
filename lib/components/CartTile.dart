@@ -51,7 +51,7 @@ class CartTile extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: QuantityCounterButton(
-                  quantity: 0,
+                  name: productName,
                 ),
               )
             ],

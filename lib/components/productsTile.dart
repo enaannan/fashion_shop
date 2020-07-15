@@ -64,7 +64,7 @@ class ProductTile extends StatelessWidget {
           Row(
             children: <Widget>[
               QuantityCounterButton(
-                quantity: product.quantity,
+                name: product.name,
               ),
               SizedBox(
                 width: 50.0,
@@ -94,7 +94,6 @@ class ProductTile extends StatelessWidget {
                           backgroundColor: Colors.red,
                           textColor: Colors.white);
                     }
-                    ;
                   },
                   child: Container(
                     height: 35.0,
