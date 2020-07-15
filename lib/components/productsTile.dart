@@ -76,11 +76,8 @@ class ProductTile extends StatelessWidget {
                     //checks if the item to be added is already in the cart
                     if (Provider.of<CartData>(context, listen: false)
                         .isNotInList(productName: product.name)) {
-                      Provider.of<CartData>(context, listen: false).addToCart(
-                          productImagePath: product.imagePath,
-                          productName: product.name,
-                          productQuantity: product.quantity,
-                          productPrice: product.price);
+                      Provider.of<CartData>(context, listen: false)
+                          .pushToCart(product);
 
                       Fluttertoast.showToast(
                           msg: 'Item addad to cart',

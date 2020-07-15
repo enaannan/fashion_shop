@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 
 class CartData extends ChangeNotifier {
   double _total = 0.0;
+  double _discount = 0.0;
   List<Product> _cartList = [];
 
   UnmodifiableListView<Product> get cartList {
@@ -14,18 +15,9 @@ class CartData extends ChangeNotifier {
     return _cartList.length;
   }
 
-  // add an item to the cart
-  String addToCart(
-      {String productName,
-      String productImagePath,
-      int productQuantity,
-      double productPrice}) {
+//adds an item to the cart
+  String pushToCart(Product product) {
     int initialLength = cartProductCount;
-    final product = Product(
-        name: productName,
-        imagePath: productImagePath,
-        quantity: productQuantity,
-        price: productPrice);
     _cartList.add(product);
     calculateTotalProductsPrice;
     notifyListeners();
@@ -39,6 +31,7 @@ class CartData extends ChangeNotifier {
   //remove item from cart
   Product removeItem({int index}) {
     var product = _cartList.removeAt(index);
+    calculateTotalProductsPrice;
 
     notifyListeners();
     return product;
@@ -55,8 +48,10 @@ class CartData extends ChangeNotifier {
   }
 
   double get calculateTotalProductsPrice {
+    _total = 0;
     for (var i = 0; i < cartList.length; i++) {
       _total = _total + (cartList[i].price * cartList[i].quantity);
+      print(_total);
     }
     notifyListeners();
 
@@ -67,5 +62,9 @@ class CartData extends ChangeNotifier {
 
   double get totalPrice {
     return _total;
+  }
+
+  double get totalMinusDiscount {
+    return _total - _discount;
   }
 }

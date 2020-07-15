@@ -76,7 +76,7 @@ class ChrochetData extends ChangeNotifier {
   void decreaseQuantity(String name) {
     for (var i = 0; i < crochetProducts.length; i++) {
       if (name == crochetProducts[i].name) {
-        if (crochetProducts[i].quantity > 0) {
+        if (crochetProducts[i].quantity > 1) {
           crochetProducts[i].quantity--;
         }
       }

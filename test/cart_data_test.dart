@@ -11,11 +11,8 @@ void main() {
   });
 
   test('Test for adding an item to the cart ', () {
-    String result = CartData().addToCart(
-        productName: 'asd',
-        productImagePath: 'iageasd/adasd.sda',
-        productQuantity: 2,
-        productPrice: 20);
+    String result = CartData().pushToCart(
+        Product(price: 10, name: "sds", imagePath: 'asds/adasd', quantity: 34));
     expect(result, 'success');
   });
 

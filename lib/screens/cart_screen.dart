@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fashion_shop/components/BottomMenuButton.dart';
 import 'package:fashion_shop/constants/constants.dart';
 import 'package:provider/provider.dart';
-import 'package:fashion_shop/Models/chrochet_data.dart';
+import 'package:fashion_shop/components/CheckoutSummary.dart';
 import 'package:fashion_shop/components/cart_list_widget.dart';
 import 'package:fashion_shop/Models/cartData.dart';
 
@@ -52,7 +52,7 @@ class CartScreen extends StatelessWidget {
                                       fontSize: 20),
                                 ),
                                 Text(
-                                  '\$0',
+                                  '\$${Provider.of<CartData>(context).totalMinusDiscount}',
                                   style: TextStyle(fontSize: 20),
                                 ),
                               ],
@@ -94,64 +94,6 @@ class CartScreen extends StatelessWidget {
             ))
           ],
         ),
-      ),
-    );
-  }
-}
-
-class CheckoutSummary extends StatelessWidget {
-  final String summaryTitle;
-  final String summaryValue;
-  final String discountValue;
-  CheckoutSummary(
-      {@required this.summaryTitle,
-      @required this.summaryValue,
-      this.discountValue = '\$ 0'});
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Column(
-        children: <Widget>[
-          Container(
-            height: 30.0,
-            width: double.infinity,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  summaryTitle,
-                  style: TextStyle(color: Color(0xFF918F8F)),
-                ),
-                Text(
-                  Provider.of<CartData>(context).totalPrice.toString(),
-                  style: TextStyle(
-                    color: Color(0xFF918F8F),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            height: 30.0,
-            width: double.infinity,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  kDiscountTitle,
-                  style: TextStyle(color: Color(0xFF918F8F)),
-                ),
-                Text(
-                  discountValue,
-                  style: TextStyle(
-                    color: Color(0xFF918F8F),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }

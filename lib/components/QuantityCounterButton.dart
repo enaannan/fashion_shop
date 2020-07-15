@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fashion_shop/Models/chrochet_data.dart';
+import 'package:fashion_shop/Models/cartData.dart';
 
 class QuantityCounterButton extends StatefulWidget {
   final String name;
@@ -22,6 +23,9 @@ class _QuantityCounterButtonState extends State<QuantityCounterButton> {
             onTap: () {
               Provider.of<ChrochetData>(context, listen: false)
                   .decreaseQuantity(widget.name);
+
+              Provider.of<CartData>(context, listen: false)
+                  .calculateTotalProductsPrice;
             },
             child: Container(
               height: 30.0,
@@ -55,6 +59,8 @@ class _QuantityCounterButtonState extends State<QuantityCounterButton> {
               onTap: () {
                 Provider.of<ChrochetData>(context, listen: false)
                     .increaseQuantity(widget.name);
+                Provider.of<CartData>(context, listen: false)
+                    .calculateTotalProductsPrice;
               },
               child: Container(
                 height: 30.0,
